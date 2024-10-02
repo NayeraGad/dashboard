@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 import { FiSettings } from "react-icons/fi";
 
-import { Footer, Navbar, Sidebar, Stacked, Themes } from "./components";
+import { Footer, Navbar, Sidebar, Themes } from "./components";
 import {
   Ecommerce,
   Customers,
@@ -20,6 +20,7 @@ import {
   Line,
   Pie,
   Pyramid,
+  Stacked
 } from "./pages";
 
 import "./App.css";
@@ -57,7 +58,7 @@ const App = () => {
             className={`bg-main-bg w-full min-h-screen dark:bg-main-bg 
               ${activeMenu ? "md:ml-72" : "flex-2"}`}
           >
-            <div className="fixed md:static bg-main-bg dark:bg-main-dark-bg">
+            <div className="navbar fixed w-full md:static bg-main-bg dark:bg-main-dark-bg">
               <Navbar />
             </div>
 
@@ -90,7 +91,7 @@ const App = () => {
               </Routes>
             </div>
 
-            <Footer />
+            {/* <Footer /> */}
           </div>
         </div>
       </BrowserRouter>

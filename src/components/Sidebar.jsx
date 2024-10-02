@@ -7,7 +7,13 @@ import { links } from "../data/dummy.jsx";
 import { useStateContext } from "../contexts/ContextProvider.jsx";
 
 const Sidebar = () => {
-  const { activeMenu, setActiveMenu } = useStateContext();
+  const { activeMenu, setActiveMenu, screenSize } = useStateContext();
+
+  const handleSideBar = () => {
+    if (activeMenu && screenSize <= 900) {
+      setActiveMenu(false);
+    }
+  };
 
   const activeLink =
     "flex items-center gap-5 m-2 pt-3 pl-4 pb-2.5 rounded-lg text-white text-md";
@@ -21,7 +27,7 @@ const Sidebar = () => {
           <div className="flex justify-between items-center">
             <Link
               to="/"
-              onClick={() => setActiveMenu(false)}
+              onClick={handleSideBar}
               className="flex items-center gap-3
             mt-4 ml-3 text-slate-900 dark:text-white text-xl font-extrabold tracking-tight"
             >
@@ -30,7 +36,7 @@ const Sidebar = () => {
 
             <TooltipComponent content="Menu" position="BottomCenter">
               <button
-                onClick={() => setActiveMenu((prev) => !prev)}
+                onClick={() => setActiveMenu(!activeMenu)}
                 className="block md:hidden mt-3 p-3 rounded-full hover:bg-light-gray text-xl"
               >
                 <MdOutlineCancel />
@@ -47,7 +53,7 @@ const Sidebar = () => {
                   <NavLink
                     key={link.name}
                     to={link.name}
-                    onClick={() => {}}
+                    onClick={handleSideBar}
                     className={({ isActive }) =>
                       isActive ? activeLink : normalLink
                     }
